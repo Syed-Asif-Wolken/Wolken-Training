@@ -22,13 +22,9 @@ class Main{
 		System.out.println("================================================================================");		
 		System.out.println(mall.name+" -> "+mall.fabric+" -> "+mall.type+" -> "+mall.company+" -> "+mall.price);
 		mall.shopping();
-		mall.name = "person 2";
-		mall.fabric = "Cotton";
-		mall.type = "Shirt";
-		mall.company = "Louis Vitton";
-		mall.price = 1999.99f;
-		System.out.println(mall.name+" -> "+mall.fabric+" -> "+mall.type+" -> "+mall.company+" -> "+mall.price);
-		mall.shopping();
+		Mall mall2 = new Mall("person 2","Cotton","Shirt","Louis Vitton",1999.99f);
+		System.out.println(mall2.name+" -> "+mall2.fabric+" -> "+mall2.type+" -> "+mall2.company+" -> "+mall2.price);
+		mall2.shopping();
 		System.out.println("================================================================================");	
 	}
 }
