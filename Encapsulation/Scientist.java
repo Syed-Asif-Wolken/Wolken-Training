@@ -63,6 +63,15 @@ public class Scientist{
 		address.setPincode(pincode);
 	}
 	
+	void deleteAddress(){
+		address.setHouseNo((short)0);
+		address.setArea("");
+		address.setCity("");
+		address.setState("");
+		address.setCountry("");
+		address.setPincode(0);
+	}
+	
 	void setAddress(Addresses address){
 		this.address = address;
 	}

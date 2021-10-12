@@ -69,12 +69,11 @@ class Tester{
 		for(int i=0;i<count;i++){
 			String sname = st[i].getName();
 			if(sname.equals(name)){
-				st[i].setRole(null);
-				st[i].setName(null);
+				st[i].setRole("");
+				st[i].setName("");
 				st[i].setYrsOfExp((byte)0);
-				st[i].setType(null);
-				st[i].setAddress(null);
-				count--;
+				st[i].setType("");
+				st[i].deleteAddress();
 				return true;
 			}
 		}
