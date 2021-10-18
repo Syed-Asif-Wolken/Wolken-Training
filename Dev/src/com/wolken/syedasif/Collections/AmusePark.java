@@ -1,6 +1,6 @@
 package com.wolken.syedasif.Collections;
 import java.util.*;
-public class AmusePark {
+public class AmusePark implements Comparable<AmusePark>{
 	private String name;
 	private String location;
 	private int noOfRides;
@@ -32,5 +32,10 @@ public class AmusePark {
 	}
 	float getPrice() {
 		return price;
+	}
+	
+	@Override
+	public int compareTo(AmusePark apt) {
+		return Integer.compare(this.noOfRides,apt.noOfRides);
 	}
 }

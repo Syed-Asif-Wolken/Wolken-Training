@@ -1,9 +1,9 @@
 package com.wolken.syedasif.Collections;
 import java.util.*;
-public class AmuseParkTester {
+public class AmuseParkTester{
 	static Scanner sc = new Scanner(System.in);
-	static Set<AmusePark> guns = new TreeSet();
-	int id;
+	static Set<AmusePark> guns = new TreeSet<AmusePark>();
+	int id=24;
 	
 	void save(AmusePark gun) {
 		guns.add(gun);
@@ -12,8 +12,12 @@ public class AmuseParkTester {
 	void saveAll(Set<AmusePark> al) {
 		guns.addAll(al);
 	}
-	
+		
 	void getAll() {
+		if(guns.isEmpty()) {
+			System.out.println("The Set is Empty.");
+			return;
+		}
 		System.out.println("=============================================");
 		for(AmusePark gun : guns) {
 			System.out.println("Name: "+gun.getName()+"\nLocation: "+gun.getLocation()+"\nNo Of Rides: "+gun.getNoOfRides()+"\nPrice: "+gun.getPrice());
@@ -22,6 +26,10 @@ public class AmuseParkTester {
 	}
 	
 	void getByName(String name) {
+		if(guns.isEmpty()) {
+			System.out.println("The Set is Empty.");
+			return;
+		}
 		System.out.println("=============================================");
 		for(AmusePark gun : guns) {
 			if(gun.getName().equalsIgnoreCase(name)) {
@@ -34,6 +42,10 @@ public class AmuseParkTester {
 	}
 	
 	void getByLocation(String loc) {
+		if(guns.isEmpty()) {
+			System.out.println("The Set is Empty.");
+			return;
+		}
 		System.out.println("=============================================");
 		for(AmusePark gun : guns) {
 			if(gun.getLocation().equalsIgnoreCase(loc)) {
@@ -162,12 +174,14 @@ public class AmuseParkTester {
 			}
 				
 			else if (choice == 3) {
+				sc.nextLine();
 				System.out.println("Enter Name: ");
 				String name = sc.nextLine();
 				test.getByName(name);
 			}
 			
 			else if (choice == 4) {
+				sc.nextLine();
 				System.out.println("Enter Location: ");
 				String loc = sc.nextLine();
 				test.getByLocation(loc);	
@@ -178,6 +192,7 @@ public class AmuseParkTester {
 			}
 			
 			else if (choice == 6) {
+				sc.nextLine();
 				System.out.println("Enter Name: ");
 				String name = sc.nextLine();
 				boolean flag = test.updateByName(name);
