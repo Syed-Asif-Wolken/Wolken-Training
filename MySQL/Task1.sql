@@ -9,6 +9,6 @@ create table Task.details_new (id int, species varchar(45), f_id int, foreign ke
 insert into details_new values (1, "Human",3),(2,"Human",2),(3,"Animal",5),(4,"Human",1),(5,"Human",4);
 select * from details_new;
 
-select * from details_new left join details on f_id = details.id;
+select * from details_new full join details on f_id = details.id;
 delete from details_new where id = 1;
 delete from details where id = 1;
