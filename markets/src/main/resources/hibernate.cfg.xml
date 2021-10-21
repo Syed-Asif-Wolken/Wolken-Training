@@ -8,6 +8,7 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/market</property>
     <property name="connection.username">root</property>
     <property name="connection.password">asif123@A</property>
-     <mapping class="com.wolken.markets.entity.MarketDetails"/>
+    <property name="hbm2ddl.auto">create</property>
+    <mapping class="com.wolken.markets.entity.MarketDetails"/>
   </session-factory>
 </hibernate-configuration>

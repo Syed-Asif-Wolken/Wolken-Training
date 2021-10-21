@@ -9,7 +9,7 @@ public class Tester
     public static void main( String[] args )
     {
     	Configuration config = new Configuration();
-    	config.configure("hibernate.cfg.xml");
+    	config.configure();
     	SessionFactory factory = config.buildSessionFactory();
     	Session session = factory.openSession();
     	ButterflyDetails details = (ButterflyDetails)session.get(ButterflyDetails.class, 1);

@@ -8,6 +8,6 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/butterflies</property>
     <property name="connection.username">root</property>
     <property name="connection.password">asif123@A</property>
-     <mapping class="com.wolken.butterflies.entity.ButterflyDetails"/>
+    <mapping class="com.wolken.butterflies.entity.ButterflyDetails"/>
   </session-factory>
 </hibernate-configuration>
