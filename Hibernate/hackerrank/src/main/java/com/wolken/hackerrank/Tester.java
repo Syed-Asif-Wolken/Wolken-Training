@@ -17,7 +17,7 @@ public class Tester
 			System.out.println("Enter your choice: ");
 			System.out.println("1. Register");
 			System.out.println("2. Login");
-//			System.out.println("3. Update By Id");
+			System.out.println("3. Forgot Password");
 //			System.out.println("4. Delete");
 			System.out.println("Any Other Number to Quit");
 			int choice = sc.nextInt();
@@ -64,6 +64,25 @@ public class Tester
 					System.out.println(login);
 				else
 					System.err.println(login);
+			}
+			else if(choice == 3) {
+				sc.nextLine();
+				UserDTO dto = new UserDTO();
+				System.out.println("Enter email: ");
+				String email = sc.nextLine();
+				System.out.println("Enter new Password: ");
+				String password = sc.nextLine();
+				System.out.println("Confirm new Password: ");
+				String cnfPassword = sc.nextLine();
+				dto.setEmail(email);
+				dto.setPassword(password);
+				dto.setCnfPassword(cnfPassword);
+				RegistrationService service=new RegistrationServiceImpl();
+				String update = service.UpdatePassword(dto);
+				if(update.contains("Successful"))
+					System.out.println(update);
+				else
+					System.err.println(update);
 			}
 			else {
 				break;

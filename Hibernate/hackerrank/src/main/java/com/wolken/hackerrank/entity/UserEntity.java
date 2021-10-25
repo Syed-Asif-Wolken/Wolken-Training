@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Getter
@@ -16,6 +18,9 @@ import javax.persistence.Table;
 @ToString
 @Entity
 @Table(name = "user_details")
+@NamedQueries({
+	@NamedQuery(name="updatePwd", query="update UserEntity set password = :pwd, cnfPassword = :cnfpwd where email = :email")
+})
 public class UserEntity {
 	@Id
 	@Column

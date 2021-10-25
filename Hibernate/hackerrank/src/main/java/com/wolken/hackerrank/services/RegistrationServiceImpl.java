@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.wolken.hackerrank.dao.LoginDAOImpl;
 import com.wolken.hackerrank.dao.RegistrationDAO;
 import com.wolken.hackerrank.dao.RegistrationDAOImpl;
 import com.wolken.hackerrank.dto.LoginDTO;
@@ -58,7 +57,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 	
 	public String loginValidation(LoginDTO dto) {
-		LoginDAOImpl dao = new LoginDAOImpl();
+		RegistrationDAO dao = new RegistrationDAOImpl();
 		LoginEntity entity = dao.getByEmail(dto.getEmail());
 		if(entity!=null) {
 			if(entity.getEmail().equals(dto.getEmail())) {
@@ -76,6 +75,35 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 		else
 			return "Incorrect Email or Password";
+	}
+
+	public String UpdatePassword(UserDTO dto) {
+		RegistrationDAO dao = new RegistrationDAOImpl();
+		UserEntity entity = new UserEntity();
+		String out = "";
+		if(dto!=null) {
+			if(!dto.getEmail().equals(null) && !dto.getEmail().equals("")) {
+				LoginEntity entity1 = dao.getByEmail(dto.getEmail());
+				if(entity1!=null) {
+					entity.setId(entity1.getId());
+					entity.setEmail(entity1.getEmail());
+					entity.setContactNumber(entity1.getContactNumber());
+					entity.setUsername(entity1.getUsername());
+					entity.setDob(entity1.getDob());
+					if(dto.getPassword().equals(dto.getCnfPassword())) {
+						entity.setPassword(dto.getPassword());
+						entity.setCnfPassword(dto.getCnfPassword());
+						out = dao.updatePassword(entity);
+						return out;
+					}
+					else
+						return "Passwords do not match";
+				}	
+			}
+			else
+				return "Provide valid email";
+		}
+		return "Incorrect Email or Password";
 	}
 
 }
