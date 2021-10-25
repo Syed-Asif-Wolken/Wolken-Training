@@ -25,7 +25,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 			return "Save Failed";
 		}
 		finally {
-			if(session==null)
+			if(session!=null)
 				session.close();
 		}
 		

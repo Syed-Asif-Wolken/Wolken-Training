@@ -8,7 +8,8 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/hackerrank</property>
     <property name="connection.username">root</property>
     <property name="connection.password">asif123@A</property>
-    <property name="hbm2ddl.auto">create</property>
+    <property name="hbm2ddl.auto">update</property>
     <mapping class="com.wolken.hackerrank.entity.UserEntity"/>
+    <mapping class="com.wolken.hackerrank.entity.LoginEntity"/>
   </session-factory>
 </hibernate-configuration>

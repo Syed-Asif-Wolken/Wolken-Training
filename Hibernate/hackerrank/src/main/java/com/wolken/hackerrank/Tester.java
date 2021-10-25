@@ -2,6 +2,7 @@ package com.wolken.hackerrank;
 
 import java.util.Scanner;
 
+import com.wolken.hackerrank.dto.LoginDTO;
 import com.wolken.hackerrank.dto.UserDTO;
 import com.wolken.hackerrank.services.RegistrationService;
 import com.wolken.hackerrank.services.RegistrationServiceImpl;
@@ -10,19 +11,19 @@ public class Tester
 {
     public static void main( String[] args )
     {
-    	UserDTO dto = new UserDTO();
     	
     	Scanner sc = new Scanner(System.in);
     	while(true) {
 			System.out.println("Enter your choice: ");
-			System.out.println("1. Insert One");
-//			System.out.println("2. Display By Id");
+			System.out.println("1. Register");
+			System.out.println("2. Login");
 //			System.out.println("3. Update By Id");
 //			System.out.println("4. Delete");
 			System.out.println("Any Other Number to Quit");
 			int choice = sc.nextInt();
 			
 			if(choice == 1) {
+				UserDTO dto = new UserDTO();
 				System.out.println("Enter Id: ");
 				int id = sc.nextInt();
 				sc.nextLine();
@@ -47,6 +48,22 @@ public class Tester
 				dto.setCnfPassword(cnfPassword);
 				RegistrationService service=new RegistrationServiceImpl();
 				service.validateAndSave(dto);
+			}
+			else if(choice == 2) {
+				sc.nextLine();
+				LoginDTO dto = new LoginDTO();
+				System.out.println("Enter email: ");
+				String email = sc.nextLine();
+				System.out.println("Enter Password: ");
+				String password = sc.nextLine();
+				dto.setEmail(email);
+				dto.setPassword(password);
+				RegistrationService service=new RegistrationServiceImpl();
+				String login = service.loginValidation(dto);
+				if(login.contains("Successful"))
+					System.out.println(login);
+				else
+					System.err.println(login);
 			}
 			else {
 				break;
