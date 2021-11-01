@@ -1,0 +1,113 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+  	<servlet-name>coke</servlet-name>
+  	<servlet-class>com.wolken.soda.Coke</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>appy</servlet-name>
+  	<servlet-class>com.wolken.soda.Appy</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>bindu</servlet-name>
+  	<servlet-class>com.wolken.soda.Bindu</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>fanta</servlet-name>
+  	<servlet-class>com.wolken.soda.Fanta</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>maid</servlet-name>
+  	<servlet-class>com.wolken.soda.MinuteMaid</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>dew</servlet-name>
+  	<servlet-class>com.wolken.soda.MountainDew</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>pepper</servlet-name>
+  	<servlet-class>com.wolken.soda.Pepper</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>pepsi</servlet-name>
+  	<servlet-class>com.wolken.soda.Pepsi</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>sevup</servlet-name>
+  	<servlet-class>com.wolken.soda.SevUp</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>sprite</servlet-name>
+  	<servlet-class>com.wolken.soda.Sprite</servlet-class>
+  </servlet>
+  
+  
+  
+  <servlet-mapping>
+  	<servlet-name>appy</servlet-name>
+  	<url-pattern>/appy</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>bindu</servlet-name>
+  	<url-pattern>/bindu</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>coke</servlet-name>
+  	<url-pattern>/coke</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>fanta</servlet-name>
+  	<url-pattern>/fanta</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>maid</servlet-name>
+  	<url-pattern>/maid</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>dew</servlet-name>
+  	<url-pattern>/dew</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>pepper</servlet-name>
+  	<url-pattern>/pepper</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>pepsi</servlet-name>
+  	<url-pattern>/pepsi</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>sevup</servlet-name>
+  	<url-pattern>/sevup</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>sprite</servlet-name>
+  	<url-pattern>/sprite</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+  	<welcome-file>Soda.html</welcome-file>
+  </welcome-file-list>
+</web-app>
