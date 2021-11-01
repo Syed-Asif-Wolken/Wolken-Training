@@ -7,13 +7,10 @@ $(document).ready(function(){
         var cnfpwd = $("#inputPassword5").val();
         var cont = $("#Contact").val();
         var dob = $("#dob").val();
-        var city = $("#inputCity").val();
-        var country = $("#inputState").val();
 
         var name_matcher = new RegExp("^([a-z]{3,15})$");
         var email_matcher = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"); 
         var contact_matcher = new RegExp("^([0-9]{10})$");
-        var city_matcher = new RegExp("^[a-z]+$");
         var pwd_valid = new RegExp("^([a-zA-Z0-9]{8,16})$");
 
         var out=true;
@@ -47,29 +44,7 @@ $(document).ready(function(){
             $("#signup_dob").html("<p class='text-danger'>Enter valid Date of Birth<p>"); 
             out=false;
         }
-
-        if ($('input:radio[name=inlineRadioOptions]').is(':checked')) {
-        } 
-        else {
-            $("#signup_radio1").html("<p class='text-danger'>Select radio button<p>");
-            out=false;
-        }
-        if ($('input:radio[name=inlineRadioOptions2]').is(':checked')) {
-        } 
-        else {
-            $("#signup_radio2").html("<p class='text-danger'>Select radio button<p>");
-            out=false;
-        }
-        if(!city.match(city_matcher)){
-            $("#signup_city").html("<p class='text-danger'>City must be lowercase<p>"); 
-            out=false;
-        } 
-        if(country==""){
-            $("#signup_country").html("<p class='text-danger'>Select Valid Country<p>"); 
-            out=false;
-        }
-
-    return out;
+        return out;
     });
     
 });

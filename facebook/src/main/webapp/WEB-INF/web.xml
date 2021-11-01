@@ -10,11 +10,44 @@
   	<servlet-class>com.wolken.facebook.RegisterServlet</servlet-class>
 </servlet>
 
+ <servlet>
+	<servlet-name>getdata</servlet-name>
+  	<servlet-class>com.wolken.facebook.GetDataServlet</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>updatepwd</servlet-name>
+  	<servlet-class>com.wolken.facebook.UpdatePwdServlet</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>deletedata</servlet-name>
+  	<servlet-class>com.wolken.facebook.DeleteServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>deletedata</servlet-name>
+	<url-pattern>/deletedata</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>updatepwd</servlet-name>
+	<url-pattern>/updatepwd</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>getdata</servlet-name>
+	<url-pattern>/getdata</url-pattern>
+</servlet-mapping>
+
 <servlet-mapping>
 	<servlet-name>demo</servlet-name>
 	<url-pattern>/demo</url-pattern>
 </servlet-mapping>
   
+<welcome-file-list>
+	<welcome-file>signup.html</welcome-file>
+</welcome-file-list>
   
  </web-app>
  

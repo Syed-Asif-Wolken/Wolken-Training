@@ -13,42 +13,33 @@ import com.wolken.facebook.dto.UserDTO;
 import com.wolken.facebook.services.RegistrationService;
 import com.wolken.facebook.services.RegistrationServiceImpl;
 
-public class RegisterServlet extends HttpServlet{
-
+public class UpdatePwdServlet extends HttpServlet{
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		UserDTO dto = new UserDTO();
+		
 		PrintWriter writer = resp.getWriter();
-		String fname = req.getParameter("fname");
-		String lname = req.getParameter("lname");
 		String email = req.getParameter("email");
-		String password = req.getParameter("password");
-		String cnfpassword = req.getParameter("cnfpassword");
-		String contact = req.getParameter("contact");
-		String dob = req.getParameter("dob");
-		String signup = req.getParameter("signup");
+		String pwd = req.getParameter("password");
+		String cnfpwd = req.getParameter("cnfpassword");
+		String submit = req.getParameter("update");
 		
-		if(!signup.isEmpty()) {
-			dto.setUsername(fname+" "+lname);
-			dto.setDob(dob);
-			dto.setEmail(email);
-			dto.setContactNumber(Long.parseLong(contact));
-			dto.setPassword(password);
-			dto.setCnfPassword(cnfpassword);
-		}
-		
+		dto.setEmail(email);
+		dto.setPassword(pwd);
+		dto.setCnfPassword(cnfpwd);
 		RegistrationService service=new RegistrationServiceImpl();
-		String out = service.validateAndSave(dto);
-		
+		String out = service.UpdatePassword(dto);
 		if(out.contains("Successfully")) {
-			RequestDispatcher rs = req.getRequestDispatcher("signup.html");
-			writer.println("<div class = 'alert alert-success' role = 'alert'><h5>"+out+"<h5></div>");
+			RequestDispatcher rs = req.getRequestDispatcher("updatePwd.html");
+			writer.println("<div class = 'alert alert-success' role = 'alert'><h5>"
+					+ out
+					+ "<h5></div>");
 			rs.include(req, resp);
 		}
-		
 		else {
-			RequestDispatcher rs = req.getRequestDispatcher("signup.html");
+			RequestDispatcher rs = req.getRequestDispatcher("updatePwd.html");
 			writer.println("<div class = 'alert alert-danger' role = 'alert'><h5>"+out+"<h5></div>");
 			rs.include(req, resp);
 		}
