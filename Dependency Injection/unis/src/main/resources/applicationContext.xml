@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+<bean id="satellite" class="com.wolken.unis.DI.University" >
+	<constructor-arg value="JSSATE" type="String"/>
+	<constructor-arg ref="panels"/>
+</bean>
+<bean id="panels" class="com.wolken.unis.DI.Students" >
+	<constructor-arg value="1000" type="int"/>
+	<constructor-arg value="2330.4f" type="float"/>
+</bean>
+</beans>    
