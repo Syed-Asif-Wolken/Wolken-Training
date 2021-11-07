@@ -1,4 +1,4 @@
-package com.wolken.instagram.services;
+package com.wolken.snapchat.services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,10 +6,11 @@ import java.util.Date;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.wolken.instagram.dao.RegistrationDAO;
-import com.wolken.instagram.dao.RegistrationDAOImpl;
-import com.wolken.instagram.dto.UserDTO;
-import com.wolken.instagram.entity.UserEntity;
+import com.wolken.snapchat.dao.RegistrationDAO;
+import com.wolken.snapchat.dao.RegistrationDAOImpl;
+import com.wolken.snapchat.dto.UserDTO;
+import com.wolken.snapchat.entity.UserEntity;
+
 
 public class RegistrationServiceImpl implements RegistrationService {
 
@@ -28,7 +29,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 			entity.setDob(date);
             entity.setContactNumber(dto.getContactNumber());
             entity.setGender(dto.getGender());
-            entity.setPassword(dto.getPassword());
             System.out.println(entity);
         }
         RegistrationDAO dao=(RegistrationDAO) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dao");

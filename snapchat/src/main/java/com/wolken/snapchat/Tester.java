@@ -1,12 +1,12 @@
-package com.wolken.instagram;
+package com.wolken.snapchat;
 
 import java.util.Scanner;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.wolken.instagram.dto.UserDTO;
-import com.wolken.instagram.services.RegistrationService;
-import com.wolken.instagram.services.RegistrationServiceImpl;
+import com.wolken.snapchat.dto.UserDTO;
+import com.wolken.snapchat.services.RegistrationService;
+import com.wolken.snapchat.services.RegistrationServiceImpl;
 
 public class Tester 
 {
@@ -36,8 +36,6 @@ public class Tester
 				String dob = sc.nextLine();
 				System.out.println("Enter Gender: ");
 				String gender = sc.nextLine();
-				System.out.println("Enter Password: ");
-				String password = sc.nextLine();
 				System.out.println("Enter Contact Number: ");
 				long contactNumber = sc.nextLong();
 				dto.setId(id);
@@ -46,7 +44,6 @@ public class Tester
 				dto.setDob(dob);
 				dto.setContactNumber(contactNumber);
 				dto.setGender(gender);
-				dto.setPassword(password);
 				RegistrationService service=(RegistrationService) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("service");
 				service.validateAndSave(dto);
 			}

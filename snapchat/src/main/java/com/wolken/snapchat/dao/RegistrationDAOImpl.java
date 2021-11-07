@@ -1,4 +1,4 @@
-package com.wolken.instagram.dao;
+package com.wolken.snapchat.dao;
 
 import javax.persistence.RollbackException;
 
@@ -7,8 +7,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.wolken.instagram.entity.UserEntity;
-import com.wolken.instagram.utils.HibernateUtils;
+import com.wolken.snapchat.entity.UserEntity;
+
+
 
 public class RegistrationDAOImpl implements RegistrationDAO{
 
