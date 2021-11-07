@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user_details")
 @NamedQueries({
-	@NamedQuery(name="updatePwd", query="update UserEntity set password = :pwd, cnfPassword = :cnfpwd where email = :email")
+	@NamedQuery(name="getByEmailId", query="from UserEntity where email = :email")
 })
 public class UserEntity {
 	@Id

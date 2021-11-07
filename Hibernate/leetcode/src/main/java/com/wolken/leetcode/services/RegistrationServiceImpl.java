@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.wolken.leetcode.dao.RegistrationDAO;
 import com.wolken.leetcode.dao.RegistrationDAOImpl;
 import com.wolken.leetcode.dto.UserDTO;
@@ -29,7 +31,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             entity.setGender(dto.getGender());
             System.out.println(entity);
         }
-        RegistrationDAO dao=new RegistrationDAOImpl();
+        RegistrationDAO dao=(RegistrationDAO) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dao");
         return dao.save(entity);
 	}
 }

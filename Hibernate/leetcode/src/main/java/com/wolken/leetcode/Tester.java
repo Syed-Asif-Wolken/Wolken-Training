@@ -2,6 +2,8 @@ package com.wolken.leetcode;
 
 import java.util.Scanner;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.wolken.leetcode.dto.UserDTO;
 import com.wolken.leetcode.services.RegistrationService;
 import com.wolken.leetcode.services.RegistrationServiceImpl;
@@ -42,7 +44,7 @@ public class Tester
 				dto.setDob(dob);
 				dto.setContactNumber(contactNumber);
 				dto.setGender(gender);
-				RegistrationService service=new RegistrationServiceImpl();
+				RegistrationService service=(RegistrationService) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("service");
 				service.validateAndSave(dto);
 			}
 			else {

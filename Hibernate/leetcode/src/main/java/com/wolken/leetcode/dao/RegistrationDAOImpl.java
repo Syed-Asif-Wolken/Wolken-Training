@@ -5,6 +5,7 @@ import javax.persistence.RollbackException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.wolken.leetcode.entity.UserEntity;
 import com.wolken.leetcode.utils.HibernateUtils;
@@ -17,7 +18,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 		Session session = null;
 		SessionFactory factory;
 		try {
-			factory = HibernateUtils.getInstance();
+			factory = (SessionFactory) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("factory");
 	    	session = factory.openSession();
 	    	Transaction tx = session.beginTransaction();
 	    	session.save(entity);

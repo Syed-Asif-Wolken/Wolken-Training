@@ -6,13 +6,25 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-    
-<bean id="satellite" class="com.wolken.unis.DI.University" >
-	<constructor-arg value="JSSATE" type="String"/>
-	<constructor-arg ref="panels"/>
+
+<bean id="satelliteConsWire" class="com.wolken.unis.DI.University" autowire="constructor"/>
+<bean id="satelliteNameWire" class="com.wolken.unis.DI.University" autowire="byName"/>
+<bean id="satelliteProperty" class="com.wolken.unis.DI.University">
+	<property name="name" ref="name"/>
+	<property name="sp" ref="sp"/>
 </bean>
-<bean id="panels" class="com.wolken.unis.DI.Students" >
-	<constructor-arg value="1000" type="int"/>
-	<constructor-arg value="2330.4f" type="float"/>
+<bean id="sp" class="com.wolken.unis.DI.Students" autowire="constructor"/>
+
+<bean id="noOfStudents" class="java.lang.Integer">
+	<constructor-arg value="300"/>
 </bean>
+
+<bean id="price" class="java.lang.Float">
+	<constructor-arg value="64000.453"/>
+</bean>
+
+<bean id="name" class="java.lang.String">
+	<constructor-arg value="JSSATE"/>
+</bean>
+
 </beans>    

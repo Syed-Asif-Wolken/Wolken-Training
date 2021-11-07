@@ -2,6 +2,8 @@ package com.wolken.hackerrank;
 
 import java.util.Scanner;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.wolken.hackerrank.dto.LoginDTO;
 import com.wolken.hackerrank.dto.UserDTO;
 import com.wolken.hackerrank.services.RegistrationService;
@@ -16,9 +18,9 @@ public class Tester
     	while(true) {
 			System.out.println("Enter your choice: ");
 			System.out.println("1. Register");
-			System.out.println("2. Login");
+			System.out.println("2. Get Data");
 			System.out.println("3. Forgot Password");
-//			System.out.println("4. Delete");
+			System.out.println("4. Delete");
 			System.out.println("Any Other Number to Quit");
 			int choice = sc.nextInt();
 			
@@ -46,24 +48,15 @@ public class Tester
 				dto.setContactNumber(contactNumber);
 				dto.setPassword(password);
 				dto.setCnfPassword(cnfPassword);
-				RegistrationService service=new RegistrationServiceImpl();
+				RegistrationService service=(RegistrationService) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("service");
 				service.validateAndSave(dto);
 			}
 			else if(choice == 2) {
 				sc.nextLine();
-				LoginDTO dto = new LoginDTO();
-				System.out.println("Enter email: ");
+				System.out.println("Enter email");
 				String email = sc.nextLine();
-				System.out.println("Enter Password: ");
-				String password = sc.nextLine();
-				dto.setEmail(email);
-				dto.setPassword(password);
-				RegistrationService service=new RegistrationServiceImpl();
-				String login = service.loginValidation(dto);
-				if(login.contains("Successful"))
-					System.out.println(login);
-				else
-					System.err.println(login);
+				RegistrationService service=(RegistrationService) new ClassPathXmlApplicationContext("classpath*:applicationContext.xml").getBean("service");
+                service.getDataByEmail(email);
 			}
 			else if(choice == 3) {
 				sc.nextLine();
@@ -77,12 +70,18 @@ public class Tester
 				dto.setEmail(email);
 				dto.setPassword(password);
 				dto.setCnfPassword(cnfPassword);
-				RegistrationService service=new RegistrationServiceImpl();
+				RegistrationService service=(RegistrationService) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("service");
 				String update = service.UpdatePassword(dto);
 				if(update.contains("Successful"))
 					System.out.println(update);
 				else
 					System.err.println(update);
+			}
+			else if(choice==4) {
+				sc.nextLine();
+				RegistrationService service=(RegistrationService) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("service");
+				System.out.println("Enter email");
+                System.out.println(service.delete(sc.nextLine()));
 			}
 			else {
 				break;

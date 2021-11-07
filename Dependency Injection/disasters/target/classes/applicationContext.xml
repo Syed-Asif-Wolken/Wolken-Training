@@ -6,12 +6,20 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-    
-<bean id="satellite" class="com.wolken.disasters.DI.DisasterName" >
-	<constructor-arg value="Earthquake" type="String"/>
-	<constructor-arg ref="panels"/>
+
+<bean id="satelliteConsWire" class="com.wolken.disasters.DI.DisasterName" autowire="constructor"/>
+<bean id="satelliteNameWire" class="com.wolken.disasters.DI.DisasterName" autowire="byName"/>
+<bean id="satelliteProperty" class="com.wolken.disasters.DI.DisasterName">
+	<property name="name" ref="name"/>
+	<property name="sp" ref="sp"/>
 </bean>
-<bean id="panels" class="com.wolken.disasters.DI.Level" >
-	<constructor-arg value="4" type="int"/>
+<bean id="sp" class="com.wolken.disasters.DI.Level" autowire="constructor"/>
+
+<bean id="material" class="java.lang.Integer">
+	<constructor-arg value="4"/>
+</bean>
+
+<bean id="name" class="java.lang.String">
+	<constructor-arg value="Earthquake"/>
 </bean>
 </beans>    

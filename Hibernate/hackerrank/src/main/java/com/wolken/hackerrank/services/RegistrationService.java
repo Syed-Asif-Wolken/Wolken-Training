@@ -7,4 +7,6 @@ public interface RegistrationService {
 	public String validateAndSave(UserDTO dto);
 	public String loginValidation(LoginDTO dto);
 	public String UpdatePassword(UserDTO dto);
+	public void getDataByEmail(String email);
+	public String delete(String email);
 }

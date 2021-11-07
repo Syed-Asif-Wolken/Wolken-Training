@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.wolken.hackerrank.dao.RegistrationDAO;
 import com.wolken.hackerrank.dao.RegistrationDAOImpl;
 import com.wolken.hackerrank.dto.LoginDTO;
@@ -52,12 +54,12 @@ public class RegistrationServiceImpl implements RegistrationService {
         	else
 				System.out.println("Provide valid UserName");
         }
-        RegistrationDAO dao=new RegistrationDAOImpl();
+        RegistrationDAO dao=(RegistrationDAO) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dao");
         return dao.save(entity);
 	}
 	
 	public String loginValidation(LoginDTO dto) {
-		RegistrationDAO dao = new RegistrationDAOImpl();
+		RegistrationDAO dao=(RegistrationDAO) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dao");
 		LoginEntity entity = dao.getByEmail(dto.getEmail());
 		if(entity!=null) {
 			if(entity.getEmail().equals(dto.getEmail())) {
@@ -78,7 +80,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public String UpdatePassword(UserDTO dto) {
-		RegistrationDAO dao = new RegistrationDAOImpl();
+		RegistrationDAO dao=(RegistrationDAO) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dao");
 		UserEntity entity = new UserEntity();
 		String out = "";
 		if(dto!=null) {
@@ -104,6 +106,18 @@ public class RegistrationServiceImpl implements RegistrationService {
 				return "Provide valid email";
 		}
 		return "Incorrect Email or Password";
+	}
+
+	public String delete(String email) {
+		RegistrationDAO dao=(RegistrationDAO) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dao");
+		UserEntity entity = dao.getByEmailId(email);
+		String out = dao.delete(entity);
+		return out;
+	}
+
+	public void getDataByEmail(String email) {
+		RegistrationDAO dao=(RegistrationDAO) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dao");
+		System.out.println(dao.getByEmailId(email));
 	}
 
 }

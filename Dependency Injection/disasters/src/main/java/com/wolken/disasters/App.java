@@ -1,19 +1,19 @@
 package com.wolken.disasters;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.wolken.disasters.DI.DisasterName;
 
 public class App 
 {
 	public static void main( String[] args )
     {
-    	Resource r=new ClassPathResource("applicationContext.xml");  
-        BeanFactory factory=new XmlBeanFactory(r);  
-        DisasterName s=(DisasterName)factory.getBean("satellite");   
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		DisasterName s=(DisasterName)context.getBean("satelliteConsWire");   
         s.print();
+        s=(DisasterName)context.getBean("satelliteNameWire");   
+        s.print();
+        s=(DisasterName)context.getBean("satelliteProperty");   
+        s.print(); 
     }
 }

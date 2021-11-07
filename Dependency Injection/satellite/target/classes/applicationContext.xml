@@ -7,13 +7,20 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
     
-<bean id="satellite" class="com.wolken.satellite.DI.SatelliteNames" >
-	<constructor-arg value="GSAT" type="String"/>
-	<constructor-arg ref="panels"/>
+<bean id="satelliteConsWire" class="com.wolken.satellite.DI.SatelliteNames" autowire="constructor"/>
+<bean id="satelliteNameWire" class="com.wolken.satellite.DI.SatelliteNames" autowire="byName"/>
+<bean id="satelliteProperty" class="com.wolken.satellite.DI.SatelliteNames">
+	<property name="name" ref="name"/>
+	<property name="sp" ref="sp"/>
 </bean>
-<bean id="panels" class="com.wolken.satellite.DI.SolarPanels" >
-	<constructor-arg value="Solar" type="String"/>
-	<constructor-arg value="1000" type="int"/>
-	<constructor-arg value="233.4f" type="float"/>
+<bean id="sp" class="com.wolken.satellite.DI.SolarPanels" autowire="constructor"/>
+
+<bean id="company" class="java.lang.String">
+	<constructor-arg value="Solar"/>
 </bean>
+
+<bean id="name" class="java.lang.String">
+	<constructor-arg value="GSAT"/>
+</bean>
+
 </beans>    
