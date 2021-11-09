@@ -1,4 +1,4 @@
-package com.wolken.monument.entity;
+package com.wolken.mobile.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +19,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @ToString
 @Entity
-@Table(name = "monument_details")
+@Table(name = "mobile_details")
 @NamedQueries({
-	@NamedQuery(name="getByEmail", query="from UserEntity where email = :email")
+	@NamedQuery(name="getByPrice", query="from UserEntity where price = :price"),
+	@NamedQuery(name="getByBrandName", query="from UserEntity where brandName = :brandName"),
+	@NamedQuery(name="getByModelNo", query="from UserEntity where modelNumber = :modelNo")
 })
 @NoArgsConstructor
 public class UserEntity {
@@ -31,11 +33,19 @@ public class UserEntity {
 	@GeneratedValue(generator="gen")
 	private int id;
 	@Column
-	private String name;
+	private String brandName;
 	@Column
-	private String builder;
+	private String type;
 	@Column
-	private int year;
+	private int ram;
 	@Column
-	private String location;
+	private int rom;
+	@Column
+	private int modelNumber;
+	@Column
+	private float price;
+	@Column
+	private String modelName;
+	@Column
+	private boolean availability;
 }

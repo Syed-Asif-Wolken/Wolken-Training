@@ -29,7 +29,7 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>

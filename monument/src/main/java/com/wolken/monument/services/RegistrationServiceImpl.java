@@ -1,5 +1,7 @@
 package com.wolken.monument.services;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.wolken.monument.dao.RegistrationDAO;
@@ -9,17 +11,15 @@ import com.wolken.monument.entity.UserEntity;
 
 @Component
 public class RegistrationServiceImpl implements RegistrationService {
-
+	
+	@Autowired
+	RegistrationDAO dao;
+	
 	public String validateAndSave(UserDTO dto) {
 		UserEntity entity=new UserEntity();
         if (dto !=null){
-            entity.setBuilder(dto.getBuilder());
-            entity.setLocation(dto.getLocation());
-            entity.setName(dto.getName());
-            entity.setYear(dto.getYear());
-            System.out.println(entity);
+            BeanUtils.copyProperties(dto, entity);
         }
-        RegistrationDAO dao= new RegistrationDAOImpl();
         return dao.save(entity);
 	}
 

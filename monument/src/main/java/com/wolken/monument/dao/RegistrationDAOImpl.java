@@ -6,20 +6,25 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.wolken.monument.entity.UserEntity;
 
-
+@Component
 public class RegistrationDAOImpl implements RegistrationDAO{
+	
+	@Autowired
+	SessionFactory factory;
 
 	public String save(UserEntity entity) {
+		
 		Session session = null;
-		SessionFactory factory;
 		try {
-			factory =(SessionFactory) new ClassPathXmlApplicationContext("classpath:/WEB-INF/DispatcherServlet-servlet.xml").getBean("factory");
 	    	session = factory.openSession();
 	    	Transaction tx = session.beginTransaction();
+	    	System.out.println(entity);
 	    	session.save(entity);
 	    	tx.commit();
 		}
