@@ -6,5 +6,5 @@
 *.settings
 *.lst
 /Servers
-*.target
-target/
+*target
+target
