@@ -11,9 +11,9 @@
 <br>
 Availability: 
 <br>
-  <input type="checkbox" id="vehicle1" name="availability" value="true">
+  <input type="radio" id="vehicle1" name="availability" value="true">
   <label for="vehicle1">True</label><br>
-  <input type="checkbox" id="vehicle2" name="availability" value="false">
+  <input type="radio" id="vehicle2" name="availability" value="false">
   <label for="vehicle2">False</label><br>
 <button type="submit" value="Submit">Submit</button>
 <button type="reset" value="Reset">Reset</button>
