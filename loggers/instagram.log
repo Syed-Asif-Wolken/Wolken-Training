@@ -1,0 +1,2 @@
+11-11-2021 10:51:39 -> Execution Thread: main main INFO com.wolken.instagram.Tester 
+ UserDTO(id=1, username=asd, email=asd, contactNumber=8709, dob=1234, gender=asd, password=asd)

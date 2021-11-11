@@ -1,6 +1,9 @@
 package com.wolken.clothes.DI;
 
+import org.apache.log4j.Logger;
+
 public class ClothingCompany {
+	Logger log = Logger.getLogger(this.getClass().getSimpleName());
 	private String name;
 	Material sp;
 	public ClothingCompany(String name, Material sp) {
@@ -10,7 +13,7 @@ public class ClothingCompany {
 	}
 	
 	public void print() {
-		System.out.println( "ClothingCompany [name=" + name + "]"+"\n"+sp);
+		log.info( "ClothingCompany [name=" + name + "]"+"\n"+sp);
 	}
 	
 }

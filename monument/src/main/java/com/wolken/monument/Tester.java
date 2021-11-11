@@ -2,6 +2,7 @@ package com.wolken.monument;
 
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.wolken.monument.dto.UserDTO;
@@ -10,10 +11,11 @@ import com.wolken.monument.services.RegistrationServiceImpl;
 
 public class Tester 
 {
+	
     public static void main( String[] args )
     {
     	UserDTO dto = new UserDTO();
-    	
+    	Logger log = Logger.getLogger(Tester.class);
     	Scanner sc = new Scanner(System.in);
     	while(true) {
 			System.out.println("Enter your choice: ");
@@ -38,6 +40,7 @@ public class Tester
 				dto.setBuilder(builder);
 				dto.setLocation(location);
 				dto.setYear(year);
+				log.info(dto);
 				RegistrationService service= new RegistrationServiceImpl();
 				service.validateAndSave(dto);
 				break;

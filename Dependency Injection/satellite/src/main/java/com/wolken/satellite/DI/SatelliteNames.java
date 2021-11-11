@@ -1,6 +1,9 @@
 package com.wolken.satellite.DI;
 
+import org.apache.log4j.Logger;
+
 public class SatelliteNames {
+	Logger log = Logger.getLogger(this.getClass().getSimpleName());
 	private String name;
 	SolarPanels sp;
 
@@ -15,7 +18,7 @@ public class SatelliteNames {
 	}
 	
 	public void print() {
-		System.out.println( "SatelliteNames [name=" + name + "]"+"\n"+sp);
+		log.info( "SatelliteNames [name=" + name + "]"+"\n"+sp);
 	}
 	
 	public String getName() {

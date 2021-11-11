@@ -2,6 +2,7 @@ package com.wolken.leetcode;
 
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.wolken.leetcode.dto.UserDTO;
@@ -13,7 +14,7 @@ public class Tester
     public static void main( String[] args )
     {
     	UserDTO dto = new UserDTO();
-    	
+    	Logger log = Logger.getLogger(Tester.class);
     	Scanner sc = new Scanner(System.in);
     	while(true) {
 			System.out.println("Enter your choice: ");
@@ -23,7 +24,7 @@ public class Tester
 //			System.out.println("4. Delete");
 			System.out.println("Any Other Number to Quit");
 			int choice = sc.nextInt();
-			
+			log.info(choice);
 			if(choice == 1) {
 				System.out.println("Enter Id: ");
 				int id = sc.nextInt();

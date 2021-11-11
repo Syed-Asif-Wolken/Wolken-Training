@@ -1,0 +1,2 @@
+11-11-2021 10:49:05 -> Execution Thread: doGet http-nio-8080-exec-6 INFO GetDataServlet 
+ UserDTO(id=3, username=syed asif, email=syed@gmail.com, contactNumber=8197565370, dob=27/04/2000, password=syedasif, cnfPassword=null)

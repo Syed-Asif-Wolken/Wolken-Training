@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.wolken.facebook.dto.UserDTO;
 import com.wolken.facebook.services.RegistrationService;
 import com.wolken.facebook.services.RegistrationServiceImpl;
 
 public class GetDataServlet extends HttpServlet{
-	
+	Logger log = Logger.getLogger(this.getClass().getSimpleName());
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -32,6 +34,8 @@ public class GetDataServlet extends HttpServlet{
 			String emailId=dto.getEmail();
 			String contact=String.valueOf(dto.getContactNumber());
 			String pwd=dto.getPassword();
+			
+			log.info(dto);
 			
 			RequestDispatcher rs = req.getRequestDispatcher("login.html");
 			writer.println("<div class = 'alert alert-success' role = 'alert'><h5>"

@@ -1,0 +1,2 @@
+10-11-2021 18:10:05 -> Execution Thread: getByPrice http-nio-8080-exec-12 INFO HelloController 
+ UserDTO(id=0, brandName=null, type=null, ram=0, rom=0, modelNumber=0, price=564.0, modelName=null, availability=false)

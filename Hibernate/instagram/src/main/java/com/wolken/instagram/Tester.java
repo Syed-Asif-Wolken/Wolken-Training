@@ -2,6 +2,7 @@ package com.wolken.instagram;
 
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.wolken.instagram.dto.UserDTO;
@@ -13,7 +14,7 @@ public class Tester
     public static void main( String[] args )
     {
     	UserDTO dto = new UserDTO();
-    	
+    	Logger log = Logger.getLogger(Tester.class);
     	Scanner sc = new Scanner(System.in);
     	while(true) {
 			System.out.println("Enter your choice: ");
@@ -47,6 +48,7 @@ public class Tester
 				dto.setContactNumber(contactNumber);
 				dto.setGender(gender);
 				dto.setPassword(password);
+				log.info(dto);
 				RegistrationService service=(RegistrationService) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("service");
 				service.validateAndSave(dto);
 			}

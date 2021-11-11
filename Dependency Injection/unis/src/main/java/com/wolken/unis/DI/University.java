@@ -1,6 +1,9 @@
 package com.wolken.unis.DI;
 
+import org.apache.log4j.Logger;
+
 public class University {
+	Logger log = Logger.getLogger(this.getClass().getSimpleName());
 	private String name;
 	Students sp;
 	
@@ -31,7 +34,7 @@ public class University {
 	}
 	
 	public void print() {
-		System.out.println( "University [name=" + name + "]"+"\n"+sp);
+		log.info( "University [name=" + name + "]"+"\n"+sp);
 	}
 	
 }

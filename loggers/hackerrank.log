@@ -1,0 +1,2 @@
+11-11-2021 10:50:47 -> Execution Thread: main main INFO com.wolken.hackerrank.Tester 
+ UserDTO(id=1, username=asd, email=asd, contactNumber=1234, dob=123, password=asd, cnfPassword=asd)

@@ -1,6 +1,9 @@
 package com.wolken.disasters.DI;
 
+import org.apache.log4j.Logger;
+
 public class DisasterName {
+	Logger log = Logger.getLogger(this.getClass().getSimpleName());
 	private String name;
 	Level sp;
 	
@@ -31,7 +34,7 @@ public class DisasterName {
 	}
 	
 	public void print() {
-		System.out.println( "DisasterName [name=" + name + "]"+"\n"+sp);
+		log.info( "DisasterName [name=" + name + "]"+"\n"+sp);
 	}
 	
 }
