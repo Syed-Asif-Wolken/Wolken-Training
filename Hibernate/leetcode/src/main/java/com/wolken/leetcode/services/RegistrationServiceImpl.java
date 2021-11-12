@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.wolken.leetcode.dao.RegistrationDAO;
@@ -13,7 +14,7 @@ import com.wolken.leetcode.entity.UserEntity;
 
 
 public class RegistrationServiceImpl implements RegistrationService {
-
+	Logger log = Logger.getLogger(this.getClass().getSimpleName());
 	public String validateAndSave(UserDTO dto) {
 		UserEntity entity=new UserEntity();
         if (dto !=null){
@@ -24,12 +25,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 			try {
 				date = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
 			} catch (ParseException e) {
-				System.out.println(e.getMessage());
+				log.error(e.getMessage());
 			}
 			entity.setDob(date);
             entity.setContactNumber(dto.getContactNumber());
             entity.setGender(dto.getGender());
-            System.out.println(entity);
+            log.info(entity);
         }
         RegistrationDAO dao=(RegistrationDAO) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dao");
         return dao.save(entity);

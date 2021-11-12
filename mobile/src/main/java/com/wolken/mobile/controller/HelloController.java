@@ -38,7 +38,10 @@ ModelAndView updatePrice(UserDTO dto) {
 		view.addObject("out","Updated Successfully");
 	}
 	view.addObject("onedata", out);
-	view.addObject("msg", "Data not found");
+	if(out==null) {
+		view.addObject("msg", "Data not found");
+		logger.warn("Data not found");
+	}
 	return view;
 }
 
@@ -51,7 +54,10 @@ ModelAndView updateAvailability(UserDTO dto) {
 		view.addObject("out","Updated Successfully");
 	}
 	view.addObject("onedata", out);
-	view.addObject("msg", "Data not found");
+	if(out==null) {
+		view.addObject("msg", "Data not found");
+		logger.warn("Data not found");
+	}
 	return view;
 }
 
@@ -63,6 +69,7 @@ ModelAndView getByPrice(UserDTO dto) {
 	view.setViewName("hello");
 	view.addObject("data", out);
 	view.addObject("msg", "Data not found");
+	logger.error("Data not found");
 	return view;
 }
 
@@ -73,6 +80,7 @@ ModelAndView getByBrand(UserDTO dto) {
 	view.setViewName("hello");
 	view.addObject("data", out);
 	view.addObject("msg", "Data not found");
+	logger.fatal("Data not found");
 	return view;
 }
 

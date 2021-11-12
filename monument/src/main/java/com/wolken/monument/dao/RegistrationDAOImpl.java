@@ -2,12 +2,11 @@ package com.wolken.monument.dao;
 
 import javax.persistence.RollbackException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.wolken.monument.entity.UserEntity;
@@ -15,6 +14,7 @@ import com.wolken.monument.entity.UserEntity;
 @Component
 public class RegistrationDAOImpl implements RegistrationDAO{
 	
+	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	SessionFactory factory;
 
@@ -24,12 +24,12 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 		try {
 	    	session = factory.openSession();
 	    	Transaction tx = session.beginTransaction();
-	    	System.out.println(entity);
+	    	log.info(entity);
 	    	session.save(entity);
 	    	tx.commit();
 		}
 		catch(RollbackException e) {
-			return "Save Failed";
+			log.error(e.getMessage());
 		}
 		finally {
 			if(session!=null)

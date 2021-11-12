@@ -2,6 +2,7 @@ package com.wolken.mobile.services;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,13 +14,18 @@ import com.wolken.mobile.entity.UserEntity;
 @Component
 public class RegistrationServiceImpl implements RegistrationService {
 	
+	Logger log = Logger.getLogger(this.getClass());
+	
 	@Autowired
 	RegistrationDAO dao;
 	
 	public String validateAndSave(UserDTO dto) {
 		UserEntity entity=new UserEntity();
-        if (dto !=null){
+        try{
             BeanUtils.copyProperties(dto, entity);
+        }
+        catch(NullPointerException e) {
+        	log.error(e.getMessage());
         }
         return dao.save(entity);
 	}
@@ -30,7 +36,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public List<UserEntity> getByPrice(float price) {
-		// TODO Auto-generated method stub
 		return dao.getByPrice(price);
 	}
 
@@ -41,6 +46,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	public UserEntity updateAvailabilityByModelNo(int modelNo, boolean availability) {
 		UserEntity entity = dao.getByModelNo(modelNo);
+		try {
+		log.info(entity);
+		}
+		catch(NullPointerException e) {
+			log.error(e.getMessage());
+		}
 		return dao.updateAvailabilityByModelNo(entity, availability);
 	}
 	

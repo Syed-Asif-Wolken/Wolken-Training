@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.RollbackException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,6 +17,8 @@ import com.wolken.mobile.entity.UserEntity;
 @Component
 public class RegistrationDAOImpl implements RegistrationDAO{
 	
+	Logger log = Logger.getLogger(this.getClass());
+	
 	@Autowired
 	SessionFactory factory;
 
@@ -25,7 +28,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 		try {
 	    	session = factory.openSession();
 	    	Transaction tx = session.beginTransaction();
-	    	System.out.println(entity);
+	    	log.info(entity);
 	    	session.save(entity);
 	    	tx.commit();
 		}
@@ -50,7 +53,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 	    	tx.commit();
 		}
 		catch(RollbackException e) {
-			System.err.println(e.getMessage());
+			log.error(e.getMessage());
 		}
 		finally {
 			if(session!=null)
@@ -70,7 +73,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 	    	tx.commit();
 		}
 		catch(RollbackException e) {
-			System.err.println(e.getMessage());
+			log.error(e.getMessage());
 		}
 		finally {
 			if(session!=null)
