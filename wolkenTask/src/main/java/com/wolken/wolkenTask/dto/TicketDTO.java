@@ -13,7 +13,7 @@ public class TicketDTO {
 	private String subject;
 	private String description;
 	private int productId;
-	private int orderId;
+	private int OrderId;
 	private String productName;
 	private int agentId;
 	private String type;

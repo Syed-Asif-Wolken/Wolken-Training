@@ -12,4 +12,6 @@ public interface UserTicketService {
 	public List<UserTicketDTO> validateAndGetUsersByEmail(String email);
 
 	public List<UserTicketDTO> validateAndGetUsersByUserId(int cid);
+
+	public void updateUserTicketUsers(UserEntity entityOut);
 }

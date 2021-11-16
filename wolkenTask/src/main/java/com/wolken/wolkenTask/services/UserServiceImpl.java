@@ -32,6 +32,9 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	UserRepo repo;
 	
+	@Autowired
+	UserTicketService service;
+	
 	@Override
 	public List<UserDTO> validateAndGetUsersByEmail(String email) {
 		List<UserDTO> dtos = new ArrayList<>();
@@ -59,13 +62,13 @@ public class UserServiceImpl implements UserService{
 	public String validateAndSave(UserDTO dto) {
 		UserEntity entity = new UserEntity();
 		try {
-			if(!Objects.isNull(dto)) {
+			if(dto!=null) {
 				if(dto.getFirstName()!=null && dto.getFirstName()!="") {
 					if(dto.getLastName()!=null && dto.getLastName()!="") {
 						if(dto.getEmail()!=null && dto.getEmail()!="") {
 							if(dto.getDob()!=null && dto.getDob()!="") {
 								if(dto.getGender()!=null && dto.getGender()!="") {
-									if(dto.getContactNo()>11111111111l && dto.getContactNo()<9999999999l){
+									if(dto.getContactNo()>1111111111l && dto.getContactNo()<9999999999l){
 										if(dto.getAddress()!=null && dto.getAddress()!="") {
 											if(dto.getCity()!=null && dto.getCity()!="") {
 												if(dto.getState()!=null && dto.getState()!="") {
@@ -75,6 +78,7 @@ public class UserServiceImpl implements UserService{
 																BeanUtils.copyProperties(dto, entity,"dob");
 																Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
 																entity.setDob(date1);
+																log.info(""+entity);
 																UserEntity entityOut = repo.save(entity);
 																log.info(""+entityOut);
 																return "Data Saved Successfully";
@@ -162,25 +166,36 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public String validateAndUpdateUser(UserDTO dto, int id) {
-		
 		try {
-			if(dto!=null) {		
+			if(dto!=null) {	
 				UserEntity entity = repo.getById(id);
 				log.info(""+entity);
 				if(!Objects.isNull(entity)) {
-					BeanUtils.copyProperties(dto, entity,getNullPropertyNames(dto));
-					if(dto.getDob()!=null || dto.getDob()!="") {
-						Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
-						entity.setDob(date1);
+					BeanUtils.copyProperties(dto, entity, getNullPropertyNames(dto));
+					log.info("DOB:"+dto.getDob());
+					log.info(""+entity);
+					if(dto.getDob()==null || dto.getDob()=="") {
+						log.info("Entered IF");
 					}
+					else {
+						log.info("Entered ELSE");
+						if(dto.getDob()!="") {
+							log.info("Entered SECOND IF");
+							Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
+							entity.setDob(date1);
+						}
+					}
+					log.info(""+entity);
 					UserEntity entityOut = repo.save(entity);
+					service.updateUserTicketUsers(entityOut);
 					log.info(""+entityOut);
 					return "Data Updated Successfully";
 				}
 				else {
 					log.info("Data not found");
+					}
 				}
-			}
+				
 			else {
 				log.info("Data is null");
 			}
@@ -191,7 +206,7 @@ public class UserServiceImpl implements UserService{
 			return "Data Not Found";			
 		}
 		catch (Exception e) {
-			log.error(e.getMessage()+" "+e.getClass());
+			log.error(e.getMessage()+" "+e.getClass()+" "+e.getLocalizedMessage()+" "+e.getCause());
 			return "Operation Unsuccessful";
 		}
 		return null;
@@ -206,12 +221,15 @@ public class UserServiceImpl implements UserService{
 				if(!entityList.isEmpty()) {
 					for(UserEntity entity : entityList) {
 						if(entity!=null) {
-							BeanUtils.copyProperties(dto, entity,getNullPropertyNames(dto));
-							if(dto.getDob()!=null || dto.getDob()!="") {
-								Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
-								entity.setDob(date1);
+							BeanUtils.copyProperties(dto, entity, getNullPropertyNames(dto));
+							if(dto.getDob()!=null) {
+								if(dto.getDob()!=""){
+									Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
+									entity.setDob(date1);
+								}
 							}
 							UserEntity entityOut = repo.save(entity);
+							service.updateUserTicketUsers(entityOut);
 							log.info(""+entityOut);
 							out = "Data Updated Successfully";
 						}
@@ -235,12 +253,11 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public static String[] getNullPropertyNames(Object source) {
-		Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+//		Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 	    final BeanWrapper src = new BeanWrapperImpl(source);
 	    PropertyDescriptor[] pds = src.getPropertyDescriptors();
 	    Set<String> emptyNames = new HashSet<String>();
 	    for (PropertyDescriptor pd : pds) {
-	    	log.info(""+pd);
 	        Object srcValue = src.getPropertyValue(pd.getName());
 	        if (srcValue == null)
 	            emptyNames.add(pd.getName());

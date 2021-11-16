@@ -1,6 +1,5 @@
 package com.wolken.syedasif.Collections;
 
-import java.util.*;
 public class Gun {
 	private String name;
 	private String model;

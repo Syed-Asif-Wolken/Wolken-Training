@@ -58,12 +58,14 @@ public class TicketServiceImpl implements TicketService{
 	public String validateAndUpdateTicket(TicketDTO dto, int ticketId) {
 		try {
 			if(dto!=null) {		
+				log.info(""+dto);
 				TicketEntity entity = repo.getById(ticketId);
 				log.info(""+entity);
 				if(!Objects.isNull(entity)) {
 					BeanUtils.copyProperties(dto, entity,getNullPropertyNames(dto));
+					UserEntity uentity = urepo.getById(dto.getCId());
+					log.info(""+uentity);
 					TicketEntity entityOut = repo.save(entity);
-					UserEntity uentity = urepo.getById(entityOut.getCId());
 					String utout=utService.saveData(uentity, entityOut);
 					log.info(""+entityOut);
 					log.info("\nUserTicket Table Response: "+utout);
@@ -79,8 +81,8 @@ public class TicketServiceImpl implements TicketService{
 		}
 		catch(EntityNotFoundException e){
 			log.error(e.getMessage()+" "+e.getClass());
-			log.info("Data not found");
-			return "Data Not Found";			
+			log.info("Invalid Ticket ID or Customer ID");
+			return "Invalid Ticket ID or Customer ID";			
 		}
 		catch (Exception e) {
 			log.error(e.getMessage()+" "+e.getClass());
@@ -104,9 +106,9 @@ public class TicketServiceImpl implements TicketService{
 											if(dto.getCId()>0) {
 												if(dto.getStatus()!=null && dto.getStatus()!="") {
 													if(dto.getPriority().equals("High") || dto.getPriority().equals("Low")) {
+														UserEntity uentity = urepo.getById(dto.getCId());
 														BeanUtils.copyProperties(dto, entity);
 														TicketEntity entityOut = repo.save(entity);
-														UserEntity uentity = urepo.getById(entityOut.getCId());
 														String utout=utService.saveData(uentity, entityOut);
 														log.info(""+entityOut);
 														log.info("\nUserTicket Table Response: "+utout);
@@ -156,6 +158,11 @@ public class TicketServiceImpl implements TicketService{
 				log.info("Data is null");
 			}
 		}
+		catch(EntityNotFoundException e){
+			log.error(e.getMessage()+" "+e.getClass());
+			log.info("Invalid Customer ID");
+			return "Invalid Customer ID";			
+		}
 		catch (Exception e) {
 			log.error(e.getMessage());
 		}
@@ -163,12 +170,12 @@ public class TicketServiceImpl implements TicketService{
 	}
 	
 	public static String[] getNullPropertyNames(Object source) {
-		Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+//		Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 	    final BeanWrapper src = new BeanWrapperImpl(source);
 	    PropertyDescriptor[] pds = src.getPropertyDescriptors();
 	    Set<String> emptyNames = new HashSet<String>();
 	    for (PropertyDescriptor pd : pds) {
-	    	log.info(""+pd);
+//	    	log.info(""+pd);
 	        Object srcValue = src.getPropertyValue(pd.getName());
 	        if (srcValue == null)
 	            emptyNames.add(pd.getName());

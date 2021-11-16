@@ -29,7 +29,7 @@ public class UserTicketDTO {
 	private int productId;	
 	private int OrderId;
 	private String type;
-	private int cId;
+	private int consumerId;
 	private String productName;
 	private int agentId;
 	private String status;

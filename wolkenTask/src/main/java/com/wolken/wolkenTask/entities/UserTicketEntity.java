@@ -78,8 +78,8 @@ public class UserTicketEntity{
 	}
 	@Column
 	private String type;
-	@Column
-	private int cId;
+	@Column(name="c_id")
+	private int consumerId;
 	@Column
 	private String productName;
 	@Column

@@ -8,8 +8,10 @@ import com.wolken.wolkenTask.entities.UserTicketEntity;
 
 public interface UserTicketRepo extends JpaRepositoryImplementation<UserTicketEntity, Integer>{
 	
-	List<UserTicketEntity> findByUserId(int cid);
+	UserTicketEntity findByUserId(int userId);
 
 	List<UserTicketEntity> findByEmail(String email);
+
+	List<UserTicketEntity> findByConsumerId(int cid);
 	
 }

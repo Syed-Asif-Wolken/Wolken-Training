@@ -30,7 +30,7 @@ public class UserTicketServiceImpl implements UserTicketService{
 			BeanUtils.copyProperties(uentity, entity);
 			BeanUtils.copyProperties(tentity, entity);
 			entity.setUserId(tentity.getTicketId());
-			entity.setCId(tentity.getCId());
+			entity.setConsumerId(tentity.getCId());
 			repo.save(entity);
 			log.info("\n"+uentity);
 			log.info("\n"+tentity);
@@ -65,8 +65,9 @@ public class UserTicketServiceImpl implements UserTicketService{
 		List<UserTicketDTO> dtos = new ArrayList<>();
 		List<UserTicketEntity> entityList;
 		try {
-			entityList = repo.findByUserId(cid);
+			entityList = repo.findByConsumerId(cid);
 			for(UserTicketEntity entity : entityList) {
+				log.info(""+entity);
 				UserTicketDTO dto = new UserTicketDTO();
 				BeanUtils.copyProperties(entity, dto);
 				dtos.add(dto);
@@ -76,26 +77,16 @@ public class UserTicketServiceImpl implements UserTicketService{
 		}
 		return dtos;
 	}
+
+	@Override
+	public void updateUserTicketUsers(UserEntity entityOut) {
+		List<UserTicketEntity> entityList = repo.findByConsumerId(entityOut.getId());
+		if(!entityList.isEmpty()) {
+			for(UserTicketEntity entity:entityList) {
+				BeanUtils.copyProperties(entityOut, entity, "subject","description","productId","OrderId","productName","agentId","type","consumerId","status","priority");
+				repo.save(entity);
+			}
+		}
+	}	
 	
-	
-	
-	/*
-	 * public static String[] getNonNullPropertyNames(Object source) { Logger log =
-	 * LoggerFactory.getLogger(UserServiceImpl.class); final BeanWrapper src = new
-	 * BeanWrapperImpl(source); PropertyDescriptor[] pds =
-	 * src.getPropertyDescriptors(); Set<String> emptyNames = new HashSet<String>();
-	 * for (PropertyDescriptor pd : pds) { log.info(""+pd); Object srcValue =
-	 * src.getPropertyValue(pd.getName()); if (srcValue != null)
-	 * emptyNames.add(pd.getName()); } String[] result = new
-	 * String[emptyNames.size()]; return emptyNames.toArray(result); }
-	 * 
-	 * public static String[] getNullPropertyNames(Object source) { Logger log =
-	 * LoggerFactory.getLogger(UserServiceImpl.class); final BeanWrapper src = new
-	 * BeanWrapperImpl(source); PropertyDescriptor[] pds =
-	 * src.getPropertyDescriptors(); Set<String> emptyNames = new HashSet<String>();
-	 * for (PropertyDescriptor pd : pds) { log.info(""+pd); Object srcValue =
-	 * src.getPropertyValue(pd.getName()); if (srcValue == null)
-	 * emptyNames.add(pd.getName()); } String[] result = new
-	 * String[emptyNames.size()]; return emptyNames.toArray(result); }
-	 */
 }
