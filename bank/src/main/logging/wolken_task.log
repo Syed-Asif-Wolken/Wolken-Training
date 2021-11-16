@@ -1,0 +1,32 @@
+2021-11-15 12:44:31.614  INFO 13776 --- [main] c.w.wolkenTask.WolkenTaskApplication     : Starting WolkenTaskApplication using Java 1.8.0_291 on WSPL-0137 with PID 13776 (D:\Dev\wolkenTask\target\classes started by USER in D:\Dev\wolkenTask)
+2021-11-15 12:44:31.616  INFO 13776 --- [main] c.w.wolkenTask.WolkenTaskApplication     : No active profile set, falling back to default profiles: default
+2021-11-15 12:44:32.130  INFO 13776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-15 12:44:32.168  INFO 13776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 1 JPA repository interfaces.
+2021-11-15 12:44:32.518  INFO 13776 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-15 12:44:32.526  INFO 13776 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-15 12:44:32.527  INFO 13776 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-11-15 12:44:32.528  INFO 13776 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.31] using APR version [1.7.0].
+2021-11-15 12:44:32.528  INFO 13776 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2021-11-15 12:44:32.528  INFO 13776 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2021-11-15 12:44:32.530  INFO 13776 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1l  24 Aug 2021]
+2021-11-15 12:44:32.603  INFO 13776 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-15 12:44:32.604  INFO 13776 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 956 ms
+2021-11-15 12:44:32.738  INFO 13776 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-15 12:44:32.775  INFO 13776 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-15 12:44:32.910  INFO 13776 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-15 12:44:32.985  INFO 13776 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-15 12:44:33.440  INFO 13776 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-15 12:44:33.464  INFO 13776 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-15 12:44:33.971  INFO 13776 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-15 12:44:33.985  INFO 13776 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-15 12:44:34.253  WARN 13776 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-15 12:44:34.607  INFO 13776 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-15 12:44:34.614  INFO 13776 --- [main] c.w.wolkenTask.WolkenTaskApplication     : Started WolkenTaskApplication in 3.293 seconds (JVM running for 3.879)
+2021-11-15 12:44:50.455  INFO 13776 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-15 12:44:50.455  INFO 13776 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-15 12:44:50.456  INFO 13776 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-15 12:44:50.582  INFO 13776 --- [http-nio-8080-exec-1] c.w.w.controller.UserController          : [UserDTO(firstName=Atul, lastName=Sreedhara, email=atul@mail.com, dob=27/04/2000, gender=Others, contactNo=9878987867, address=address1, city=bangalore, state=Karnataka, country=india, pincode=560070, maritalStatus=Divorced), UserDTO(firstName=Prateek, lastName=Gupta, email=prateek@mail.com, dob=24/02/1996, gender=Others, contactNo=9867987867, address=address2, city=bangalore, state=Karnataka, country=india, pincode=560068, maritalStatus=Married)]
+2021-11-15 12:45:24.110  INFO 13776 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-11-15 12:45:24.254  INFO 13776 --- [RMI TCP Connection(3)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-15 12:45:24.256  INFO 13776 --- [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-15 12:45:24.260  INFO 13776 --- [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

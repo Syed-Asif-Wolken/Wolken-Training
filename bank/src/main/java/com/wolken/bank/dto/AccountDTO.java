@@ -10,7 +10,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class AccountDTO {
-	private int accNo;
 	private String holderName;
 	private long contactNo;
 	private String email;

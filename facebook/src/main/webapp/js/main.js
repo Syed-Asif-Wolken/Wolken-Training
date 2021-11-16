@@ -1,5 +1,8 @@
 $(document).ready(function(){
-    $(".submitter").on("click",function(){
+	$("footer").click(function(){
+    alert("The paragraph was clicked.");
+  });
+    /*$(".submitter").on("click",function(){
         var fn = $("#n1").val();
         var ln = $("#n2").val();
         var email = $("#inputEmail4").val();
@@ -45,6 +48,6 @@ $(document).ready(function(){
             out=false;
         }
         return out;
-    });
+    });*/
     
 });
