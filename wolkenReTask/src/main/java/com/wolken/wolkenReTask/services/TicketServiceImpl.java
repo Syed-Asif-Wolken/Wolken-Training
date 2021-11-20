@@ -1,4 +1,4 @@
-package com.wolken.wolkenTask.services;
+package com.wolken.wolkenReTask.services;
 
 import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
@@ -17,11 +17,10 @@ import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wolken.wolkenTask.dto.TicketDTO;
-import com.wolken.wolkenTask.entities.TicketEntity;
-import com.wolken.wolkenTask.entities.UserEntity;
-import com.wolken.wolkenTask.repositories.TicketRepo;
-import com.wolken.wolkenTask.repositories.UserRepo;
+import com.wolken.wolkenReTask.dto.TicketDTO;
+import com.wolken.wolkenReTask.entities.TicketEntity;
+import com.wolken.wolkenReTask.repositories.TicketRepo;
+import com.wolken.wolkenReTask.repositories.UserRepo;
 
 @Service
 public class TicketServiceImpl implements TicketService{
@@ -34,9 +33,6 @@ public class TicketServiceImpl implements TicketService{
 	@Autowired
 	UserRepo urepo;
 	
-	@Autowired
-	UserTicketService utService;
-	
 	@Override
 	public List<TicketDTO> validateAndGetAllTickets() {
 		List<TicketDTO> dtos = new ArrayList<>();
@@ -45,6 +41,7 @@ public class TicketServiceImpl implements TicketService{
 			entityList = repo.findAll();
 			if(!entityList.isEmpty()) {
 				for(TicketEntity entity : entityList) {
+					log.info(""+entity);
 					TicketDTO dto = new TicketDTO();
 					BeanUtils.copyProperties(entity, dto);
 					dtos.add(dto);
@@ -68,12 +65,8 @@ public class TicketServiceImpl implements TicketService{
 				log.info(""+entity);
 				if(!Objects.isNull(entity)) {
 					BeanUtils.copyProperties(dto, entity,getNullPropertyNames(dto));
-					UserEntity uentity = urepo.getById(dto.getCId());
-					log.info(""+uentity);
 					TicketEntity entityOut = repo.save(entity);
-					String utout=utService.saveData(uentity, entityOut);
 					log.info(""+entityOut);
-					log.info("\nUserTicket Table Response: "+utout);
 					return "Data Updated Successfully";
 				}
 				else {
@@ -104,19 +97,14 @@ public class TicketServiceImpl implements TicketService{
 				if(dto.getSubject()!=null && dto.getSubject()!="") {
 					if(dto.getDescription()!=null && dto.getDescription()!="") {
 						if(dto.getProductId()>0) {
-							if(dto.getOrderId()>0) {
 								if(dto.getProductName()!=null && dto.getProductName()!="") {
 									if(dto.getAgentId()>0){
 										if(dto.getType()!=null && dto.getType()!="") {
-											if(dto.getCId()>0) {
 												if(dto.getStatus()!=null && dto.getStatus()!="") {
 													if(dto.getPriority().equals("High") || dto.getPriority().equals("Low")) {
-														UserEntity uentity = urepo.getById(dto.getCId());
 														BeanUtils.copyProperties(dto, entity);
 														TicketEntity entityOut = repo.save(entity);
-														String utout=utService.saveData(uentity, entityOut);
 														log.info(""+entityOut);
-														log.info("\nUserTicket Table Response: "+utout);
 														return "Data Saved Successfully";
 													}
 													else {
@@ -126,10 +114,6 @@ public class TicketServiceImpl implements TicketService{
 												else {
 													return "Invalid Status";
 												}
-											}
-											else {
-												return "Invalid Customer ID";
-											}
 										}
 										else {
 											return "Invalid Type";
@@ -142,10 +126,6 @@ public class TicketServiceImpl implements TicketService{
 								else {
 									return "Invalid Product Name";
 								}
-							}
-							else {
-								return "Invalid Order ID";
-							}
 						}
 						else {
 							return "Invalid Product ID";
@@ -214,5 +194,4 @@ public class TicketServiceImpl implements TicketService{
 	    String[] result = new String[emptyNames.size()];
 	    return emptyNames.toArray(result);
 	}
-
 }

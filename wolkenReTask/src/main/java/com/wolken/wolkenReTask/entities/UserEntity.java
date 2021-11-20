@@ -1,14 +1,20 @@
-package com.wolken.wolkenTask.entities;
+package com.wolken.wolkenReTask.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,10 +28,10 @@ import lombok.ToString;
 @Entity
 @Table
 @ToString
-public class UserEntity {
+public class UserEntity{
 	@Id
-	@GenericGenerator(name="gen",strategy="increment")
-	@GeneratedValue(generator="gen")
+	@GenericGenerator(name="gen", strategy = "increment")
+	@GeneratedValue(generator = "gen")
 	@Column
 	private int id;
 	@Column
@@ -62,11 +68,15 @@ public class UserEntity {
 	}
 	@Column
 	private String maritalStatus;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id", referencedColumnName = "id")
+	@JsonIgnoreProperties("user")
+//	@Getter(value = AccessLevel.NONE)
+	private List<TicketEntity> tickets;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	  @JoinTable(name = "MY_JOIN_TABLE",
-//	          joinColumns = {@JoinColumn(table = "ticket_entity")}
-//	          inverseJoinColumns = {@JoinColumn(name = "cId")}
-//	  )
-//	private List<TicketEntity> ticketEntityList;
+//	@JsonManagedReference
+//	public List<TicketEntity> getTickets() {
+//		return tickets;
+//	}
 }

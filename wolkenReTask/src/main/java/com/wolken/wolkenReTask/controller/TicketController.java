@@ -1,4 +1,4 @@
-package com.wolken.wolkenTask.controller;
+package com.wolken.wolkenReTask.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.wolken.wolkenTask.dto.TicketDTO;
-import com.wolken.wolkenTask.services.TicketService;
+import com.wolken.wolkenReTask.dto.TicketDTO;
+import com.wolken.wolkenReTask.services.TicketService;
 
 @RestController
 public class TicketController {
@@ -46,7 +46,7 @@ public class TicketController {
 		map.put("response", "Data Not Found");
 		log.info(""+dto);
 		if(dto==null) {
-			return new ResponseEntity(dto.getCId(),HttpStatus.NOT_FOUND);
+			return new ResponseEntity(map,HttpStatus.NOT_FOUND);
 			}
 		return new ResponseEntity<TicketDTO>(dto, HttpStatus.OK);
 	}

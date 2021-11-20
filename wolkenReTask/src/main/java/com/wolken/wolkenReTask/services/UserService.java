@@ -1,8 +1,8 @@
-package com.wolken.wolkenTask.services;
+package com.wolken.wolkenReTask.services;
 
 import java.util.List;
 
-import com.wolken.wolkenTask.dto.UserDTO;
+import com.wolken.wolkenReTask.dto.UserDTO;
 
 public interface UserService {
 
@@ -19,5 +19,7 @@ public interface UserService {
 	String validateAndSaveAll(List<UserDTO> dtos);
 
 	UserDTO validateAndGetUsersById(int id);
+
+	UserDTO validateAndGetUserTicketsById(int id);
 
 }

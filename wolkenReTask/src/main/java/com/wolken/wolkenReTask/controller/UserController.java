@@ -1,4 +1,4 @@
-package com.wolken.wolkenTask.controller;
+package com.wolken.wolkenReTask.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.wolken.wolkenTask.dto.UserDTO;
-import com.wolken.wolkenTask.services.UserService;
+import com.wolken.wolkenReTask.dto.UserDTO;
+import com.wolken.wolkenReTask.services.UserService;
 
 @RestController
 public class UserController {
@@ -49,9 +49,20 @@ public class UserController {
 		return new ResponseEntity<UserDTO>(dto,HttpStatus.OK);
 	}
 	
+//	@GetMapping("getUserTicketsById")
+//	ResponseEntity<UserDTO> getUserTicketsById(@RequestParam int id){
+//		UserDTO dto = service.validateAndGetUserTicketsById(id);
+//		map.put("response", "Data Not Found");
+//		log.info(""+dto);
+//		if(dto==null)
+//			return new ResponseEntity(map,HttpStatus.NOT_FOUND);
+//		return new ResponseEntity<UserDTO>(dto,HttpStatus.OK);
+//	}
+	
 	@GetMapping("getAllUsers")
 	ResponseEntity<List<UserDTO>> getAllUsers(){
 		List<UserDTO> dtos = service.validateAndGetAllUsers();
+		map.put("response", "Data Not Found");
 		log.info(""+dtos);
 		if(dtos.isEmpty())
 			return new ResponseEntity(map,HttpStatus.NOT_FOUND);

@@ -1,4 +1,4 @@
-package com.wolken.wolkenTask.services;
+package com.wolken.wolkenReTask.services;
 
 import java.beans.PropertyDescriptor;
 import java.text.SimpleDateFormat;
@@ -19,9 +19,9 @@ import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wolken.wolkenTask.dto.UserDTO;
-import com.wolken.wolkenTask.entities.UserEntity;
-import com.wolken.wolkenTask.repositories.UserRepo;
+import com.wolken.wolkenReTask.dto.UserDTO;
+import com.wolken.wolkenReTask.entities.UserEntity;
+import com.wolken.wolkenReTask.repositories.UserRepo;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -31,9 +31,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	UserRepo repo;
-	
-	@Autowired
-	UserTicketService service;
 	
 	@Override
 	public List<UserDTO> validateAndGetUsersByEmail(String email) {
@@ -78,6 +75,7 @@ public class UserServiceImpl implements UserService{
 																BeanUtils.copyProperties(dto, entity,"dob");
 																Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
 																entity.setDob(date1);
+																log.info(""+dto.getTickets());
 																log.info(""+entity);
 																UserEntity entityOut = repo.save(entity);
 																log.info(""+entityOut);
@@ -188,7 +186,6 @@ public class UserServiceImpl implements UserService{
 					}
 					log.info(""+entity);
 					UserEntity entityOut = repo.save(entity);
-					service.updateUserTicketUsers(entityOut);
 					log.info(""+entityOut);
 					return "Data Updated Successfully";
 				}
@@ -230,7 +227,6 @@ public class UserServiceImpl implements UserService{
 								}
 							}
 							UserEntity entityOut = repo.save(entity);
-							service.updateUserTicketUsers(entityOut);
 							log.info(""+entityOut);
 							out = "Data Updated Successfully";
 						}
@@ -288,5 +284,21 @@ public class UserServiceImpl implements UserService{
 	    }
 	    String[] result = new String[emptyNames.size()];
 	    return emptyNames.toArray(result);
+	}
+
+	@Override
+	public UserDTO validateAndGetUserTicketsById(int id) {
+		UserDTO dto = new UserDTO();
+		try {
+			UserEntity entity = repo.getById(id);
+			log.info(""+entity);
+			BeanUtils.copyProperties(entity, dto);
+			dto.setDob(formatter.format(entity.getDob()));
+		} catch (EntityNotFoundException e) {
+			log.error(e.getMessage());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		return dto;
 	}
 }

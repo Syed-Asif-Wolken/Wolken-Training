@@ -1,8 +1,8 @@
-package com.wolken.wolkenTask.services;
+package com.wolken.wolkenReTask.services;
 
 import java.util.List;
 
-import com.wolken.wolkenTask.dto.TicketDTO;
+import com.wolken.wolkenReTask.dto.TicketDTO;
 
 public interface TicketService {
 
