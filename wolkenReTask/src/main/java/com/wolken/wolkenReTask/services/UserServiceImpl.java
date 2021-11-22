@@ -75,7 +75,6 @@ public class UserServiceImpl implements UserService{
 																BeanUtils.copyProperties(dto, entity,"dob");
 																Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
 																entity.setDob(date1);
-																log.info(""+dto.getTickets());
 																log.info(""+entity);
 																UserEntity entityOut = repo.save(entity);
 																log.info(""+entityOut);

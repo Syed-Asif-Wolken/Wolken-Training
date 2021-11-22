@@ -62,11 +62,4 @@ public class UserEntity {
 	}
 	@Column
 	private String maritalStatus;
-	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	  @JoinTable(name = "MY_JOIN_TABLE",
-//	          joinColumns = {@JoinColumn(table = "ticket_entity")}
-//	          inverseJoinColumns = {@JoinColumn(name = "cId")}
-//	  )
-//	private List<TicketEntity> ticketEntityList;
 }

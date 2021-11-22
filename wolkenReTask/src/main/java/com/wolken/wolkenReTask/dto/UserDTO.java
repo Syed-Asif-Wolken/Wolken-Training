@@ -27,7 +27,7 @@ public class UserDTO {
 	private String country;
 	private int pincode;
 	private String maritalStatus;
-	@JsonIgnoreProperties("user")
-	private List<TicketEntity> tickets;
+//	@JsonIgnoreProperties("user")
+//	private List<TicketEntity> tickets;
 }
 

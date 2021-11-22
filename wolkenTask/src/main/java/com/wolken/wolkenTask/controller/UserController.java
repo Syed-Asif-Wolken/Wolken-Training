@@ -2,6 +2,7 @@ package com.wolken.wolkenTask.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,7 @@ public class UserController {
 		UserDTO dto = service.validateAndGetUsersById(id);
 		map.put("response", "Data Not Found");
 		log.info(""+dto);
-		if(dto==null)
+		if(dto.getEmail()==null)
 			return new ResponseEntity(map,HttpStatus.NOT_FOUND);
 		return new ResponseEntity<UserDTO>(dto,HttpStatus.OK);
 	}
@@ -65,7 +66,7 @@ public class UserController {
 		return out;
 	}
 	
-	@PostMapping("addAllUser")
+	@PostMapping("addAllUsers")
 	String addAllUser(@RequestBody List<UserDTO> dtos) {
 		String out = service.validateAndSaveAll(dtos);
 		log.info("\nData:"+dtos+"\nResponse:"+out);

@@ -38,7 +38,9 @@ public class TicketServiceImpl implements TicketService{
 		List<TicketDTO> dtos = new ArrayList<>();
 		List<TicketEntity> entityList;
 		try {
+			log.info("Entered Try");
 			entityList = repo.findAll();
+			log.info(""+entityList);
 			if(!entityList.isEmpty()) {
 				for(TicketEntity entity : entityList) {
 					log.info(""+entity);
@@ -158,7 +160,8 @@ public class TicketServiceImpl implements TicketService{
 	@Override
 	public TicketDTO validateAndGetTicketById(int ticketId) {
 		try {
-			TicketEntity entity = repo.getById(ticketId);
+			TicketEntity entity = repo.findByTicketId(ticketId);
+			log.info(""+entity);
 			TicketDTO dto = new TicketDTO();
 			BeanUtils.copyProperties(entity, dto);
 			return dto;			

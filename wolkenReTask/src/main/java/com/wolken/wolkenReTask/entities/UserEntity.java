@@ -8,13 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -69,14 +69,14 @@ public class UserEntity{
 	@Column
 	private String maritalStatus;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="user_id", referencedColumnName = "id")
+	@OneToMany(targetEntity = TicketEntity.class, mappedBy = "user", cascade = CascadeType.ALL)
+//	@JoinColumn(name="user_id", referencedColumnName = "id")
 	@JsonIgnoreProperties("user")
-//	@Getter(value = AccessLevel.NONE)
+	@Getter(value = AccessLevel.NONE)
 	private List<TicketEntity> tickets;
 	
-//	@JsonManagedReference
-//	public List<TicketEntity> getTickets() {
-//		return tickets;
-//	}
+	@JsonManagedReference
+	public List<TicketEntity> getTickets() {
+		return tickets;
+	}
 }

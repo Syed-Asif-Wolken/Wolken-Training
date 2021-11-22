@@ -46,7 +46,7 @@ public class TicketController {
 		map.put("response", "Data Not Found");
 		log.info(""+dto);
 		if(dto==null) {
-			return new ResponseEntity(dto.getCId(),HttpStatus.NOT_FOUND);
+			return new ResponseEntity(map,HttpStatus.NOT_FOUND);
 			}
 		return new ResponseEntity<TicketDTO>(dto, HttpStatus.OK);
 	}
