@@ -23,6 +23,6 @@ public class TicketDTO {
 	private String status;
 	private String priority;
 	private String agentName;
-//	@JsonIgnoreProperties("tickets")
-//	private UserEntity user;
+	@JsonIgnoreProperties("tickets")
+	private UserEntity user;
 }

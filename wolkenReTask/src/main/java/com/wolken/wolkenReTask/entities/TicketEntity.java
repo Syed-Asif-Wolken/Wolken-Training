@@ -1,17 +1,20 @@
 package com.wolken.wolkenReTask.entities;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -25,7 +28,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table
-public class TicketEntity{
+public class TicketEntity implements Serializable{
 	@Id
 	@GenericGenerator(name="gen", strategy = "increment")
 	@GeneratedValue(generator = "gen")
@@ -62,13 +65,7 @@ public class TicketEntity{
 	@Column
 	private String priority;
 	@ManyToOne(targetEntity = UserEntity.class)
-	@JoinColumn(name="customerId")
-	@JsonIgnoreProperties("tickets")
-	@Getter(value=AccessLevel.NONE)
+//	@JoinColumn(name="customerId")
+	@JsonIgnore
 	private UserEntity user;
-//	
-	@JsonBackReference
-	public UserEntity getUser() {
-		return user;
-	}
 }

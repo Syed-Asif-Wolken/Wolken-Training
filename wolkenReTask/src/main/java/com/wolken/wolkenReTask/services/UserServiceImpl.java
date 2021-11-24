@@ -1,9 +1,9 @@
 package com.wolken.wolkenReTask.services;
 
 import java.beans.PropertyDescriptor;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +27,7 @@ import com.wolken.wolkenReTask.repositories.UserRepo;
 public class UserServiceImpl implements UserService{
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 	
 	@Autowired
 	UserRepo repo;
@@ -72,9 +72,8 @@ public class UserServiceImpl implements UserService{
 													if(dto.getCountry()!=null && dto.getCountry()!="") {
 														if(dto.getPincode()>0){
 															if(dto.getMaritalStatus()!=null && dto.getMaritalStatus()!="") {
-																BeanUtils.copyProperties(dto, entity,"dob");
-																Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
-																entity.setDob(date1);
+																BeanUtils.copyProperties(dto, entity);
+																entity.setDob(LocalDate.parse(dto.getDob(), formatter));
 																log.info(""+entity);
 																UserEntity entityOut = repo.save(entity);
 																log.info(""+entityOut);
@@ -179,8 +178,7 @@ public class UserServiceImpl implements UserService{
 						log.info("Entered ELSE");
 						if(dto.getDob()!="") {
 							log.info("Entered SECOND IF");
-							Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
-							entity.setDob(date1);
+							entity.setDob(LocalDate.parse(dto.getDob(), formatter));
 						}
 					}
 					log.info(""+entity);
@@ -221,8 +219,7 @@ public class UserServiceImpl implements UserService{
 							BeanUtils.copyProperties(dto, entity, getNullPropertyNames(dto));
 							if(dto.getDob()!=null) {
 								if(dto.getDob()!=""){
-									Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDob());
-									entity.setDob(date1);
+									entity.setDob(LocalDate.parse(dto.getDob(), formatter));
 								}
 							}
 							UserEntity entityOut = repo.save(entity);
@@ -263,6 +260,7 @@ public class UserServiceImpl implements UserService{
 		try {
 			UserEntity entity = repo.getById(id);
 			BeanUtils.copyProperties(entity, dto);
+			dto.setDob(formatter.format(entity.getDob()));
 		} catch (EntityNotFoundException e) {
 			log.error(e.getMessage());
 		} catch (Exception e) {

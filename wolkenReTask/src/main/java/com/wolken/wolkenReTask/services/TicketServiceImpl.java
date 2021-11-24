@@ -1,6 +1,7 @@
 package com.wolken.wolkenReTask.services;
 
 import java.beans.PropertyDescriptor;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,7 @@ import com.wolken.wolkenReTask.repositories.UserRepo;
 public class TicketServiceImpl implements TicketService{
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Autowired
 	TicketRepo repo;
@@ -160,8 +162,8 @@ public class TicketServiceImpl implements TicketService{
 	@Override
 	public TicketDTO validateAndGetTicketById(int ticketId) {
 		try {
-			TicketEntity entity = repo.findByTicketId(ticketId);
-			log.info(""+entity);
+			TicketEntity entity = repo.getByTicketId(ticketId);
+			log.info(""+entity.getUser().getDob());
 			TicketDTO dto = new TicketDTO();
 			BeanUtils.copyProperties(entity, dto);
 			return dto;			

@@ -1,11 +1,14 @@
 package com.wolken.wolkenReTask.entities;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -13,6 +16,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -27,8 +31,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table
-@ToString
-public class UserEntity{
+
+public class UserEntity implements Serializable{
 	@Id
 	@GenericGenerator(name="gen", strategy = "increment")
 	@GeneratedValue(generator = "gen")
@@ -41,7 +45,7 @@ public class UserEntity{
 	@Column
 	private String email;
 	@Column
-	private Date dob;
+	private LocalDate dob;
 	@Column
 	private String gender;
 	@Column
@@ -69,14 +73,8 @@ public class UserEntity{
 	@Column
 	private String maritalStatus;
 
-	@OneToMany(targetEntity = TicketEntity.class, mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user")
 //	@JoinColumn(name="user_id", referencedColumnName = "id")
-	@JsonIgnoreProperties("user")
-	@Getter(value = AccessLevel.NONE)
+	@JsonIgnore
 	private List<TicketEntity> tickets;
-	
-	@JsonManagedReference
-	public List<TicketEntity> getTickets() {
-		return tickets;
-	}
 }

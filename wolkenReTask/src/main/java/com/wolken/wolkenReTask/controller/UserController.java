@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.wolken.wolkenReTask.dto.UserDTO;
@@ -44,7 +45,7 @@ public class UserController {
 		UserDTO dto = service.validateAndGetUsersById(id);
 		map.put("response", "Data Not Found");
 		log.info(""+dto);
-		if(dto==null)
+		if(dto.getEmail()==null)
 			return new ResponseEntity(map,HttpStatus.NOT_FOUND);
 		return new ResponseEntity<UserDTO>(dto,HttpStatus.OK);
 	}
@@ -91,13 +92,13 @@ public class UserController {
 	}
 	
 	@PostMapping("updateUserByEmail")
-	String updateUserByEmail(@RequestBody UserDTO dto,@RequestParam String email) {
+	Object updateUserByEmail(@RequestBody UserDTO dto,@RequestParam String email) {
 		String out = service.validateAndUpdateUserByEmail(dto,email);
 		log.info("\nData:"+dto+"\nResponse:"+out);
 		return out;
 	}
 	
-	@ExceptionHandler(value={HttpMessageNotReadableException.class, InvalidFormatException.class})
+	@ExceptionHandler(value={HttpMessageNotReadableException.class, InvalidFormatException.class, MethodArgumentTypeMismatchException.class})
 	Object ExceptionHandler() {
 		return "Data is in Incorrect Format";
 	}
